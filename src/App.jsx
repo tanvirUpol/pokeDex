@@ -13,9 +13,6 @@ import NotFound from './pages/NotFound';
 
 function App() {
   
-
-
-
   return (
     <>
        <div className="container px-5 mx-auto font-VT323">
@@ -26,7 +23,7 @@ function App() {
           <Routes>
               <Route path="/" element={<Navbar />}>
                 <Route index element={<Home />} />
-                <Route path="pokeDetails" element={<PokemonDetails />} />
+                <Route path="pokeDetails/:name" element={<PokemonDetails />} />
 
                 {/* Using path="*"" means "match anything", so this route
                       acts like a catch-all for URLs that we don't have explicit

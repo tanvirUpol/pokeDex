@@ -24,10 +24,11 @@ const typeColors = [
   ];
   
 
-const PokeCard = ({pokemon,pokemonDetails,index}) => {
+  const PokeCard = ({pokemon,pokemonDetails,index}) => {
     const types = pokemonDetails[index]?.types.map(
         (type) => type.type.name
       );
+
 
     const pokemonTypeColors = types?.map((type) =>
         typeColors.find((color) => color.type === type)
@@ -37,7 +38,7 @@ const PokeCard = ({pokemon,pokemonDetails,index}) => {
     
     <>
         
-        <Link  className="bg-gray-100 shadow p-4 rounded hover:bg-gray-200">
+        <Link to={`/pokeDetails/${pokemonDetails[index]?.name}`} className="bg-gray-100 shadow p-4 rounded hover:bg-gray-200">
                   {/* types */}
                   <div className="flex justify-end items-center gap-2 text-lg">
                     {pokemonTypeColors?.map((typeColor, index) => (
