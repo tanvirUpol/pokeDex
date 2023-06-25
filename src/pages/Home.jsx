@@ -20,9 +20,6 @@ const Home = () => {
         fetchPokemon();
     }, []);
 
-    useEffect(() => {
-        console.log(searchVal);
-    }, [searchVal]);
 
     const fetchPokemon = async () => {
         try {
