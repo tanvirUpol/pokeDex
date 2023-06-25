@@ -14,13 +14,14 @@ const Home = () => {
     const [visiblePokemon, setVisiblePokemon] = useState(20);
     const [searchVal,setSearchVal] = useState('');
 
+    let filterData = matchSorter(pokemonList, searchVal , {keys: ['name'],sorter: rankedItems => rankedItems,   threshold: matchSorter.rankings.STARTS_WITH });
+
+
     useEffect(() => {
         fetchPokemon();
     }, []);
 
-    useEffect(() => {
-        console.log(searchVal);
-    }, [searchVal]);
+
 
     const fetchPokemon = async () => {
         try {
@@ -38,13 +39,13 @@ const Home = () => {
     const fetchPokemonDetails = async (url) => {
         try {
         const response = await axios.get(url);
-        const types = response.data;
-        return types;
+        const data = response.data;
+        return data;
         } catch (error) {
         console.error('Error fetching Pokémon details:', error);
         }
     };
-
+    
     useEffect(() => {
         const fetchDetails = async () => {
         const details = await Promise.all(
@@ -52,19 +53,17 @@ const Home = () => {
             fetchPokemonDetails(pokemon.url)
             )
         );
-        console.log("hello");
         setPokemonDetails(details);
         };
 
         fetchDetails();
-    }, [searchVal, visiblePokemon]);
+    }, [searchVal,pokemonList, visiblePokemon]);
 
     const loadMorePokemon = () => {
         setVisiblePokemon((prevCount) => prevCount + 20);
     };
 
-    let filterData = matchSorter(pokemonList, searchVal , {keys: ['name'],sorter: rankedItems => rankedItems,   threshold: matchSorter.rankings.STARTS_WITH });
-
+    
 
   return (
     <div className='flex flex-col' >
