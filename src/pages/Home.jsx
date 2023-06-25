@@ -14,12 +14,13 @@ const Home = () => {
     const [visiblePokemon, setVisiblePokemon] = useState(20);
     const [searchVal,setSearchVal] = useState('');
 
-    let filterData = matchSorter(pokemonList, searchVal , {keys: ['name'],sorter: rankedItems => rankedItems,   threshold: matchSorter.rankings.STARTS_WITH });
-
     useEffect(() => {
         fetchPokemon();
     }, []);
 
+    useEffect(() => {
+        console.log(searchVal);
+    }, [searchVal]);
 
     const fetchPokemon = async () => {
         try {
@@ -51,17 +52,18 @@ const Home = () => {
             fetchPokemonDetails(pokemon.url)
             )
         );
+        console.log("hello");
         setPokemonDetails(details);
         };
 
         fetchDetails();
-    }, [filterData, visiblePokemon]);
+    }, [searchVal, visiblePokemon]);
 
     const loadMorePokemon = () => {
         setVisiblePokemon((prevCount) => prevCount + 20);
     };
 
-    
+    let filterData = matchSorter(pokemonList, searchVal , {keys: ['name'],sorter: rankedItems => rankedItems,   threshold: matchSorter.rankings.STARTS_WITH });
 
 
   return (
