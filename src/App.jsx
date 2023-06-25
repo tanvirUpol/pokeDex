@@ -15,7 +15,7 @@ function App() {
   
   return (
     <>
-       <div className="container px-5 mx-auto font-VT323">
+       <div className="container px-5 pb-5 mx-auto font-VT323">
           {/* <Navbar/>
           <Home/>
           <PokemonDetails/> */}
