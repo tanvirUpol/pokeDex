@@ -11,7 +11,7 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link to="https://github.com/tanvirUpol" target="_blank" className="flex items-center text-xl gap-2">
+            <Link to="https://github.com/tanvirUpol/pokeDex" target="_blank" className="flex items-center text-xl gap-2">
                 <img className="w-10" src="/assets/githubLogo.svg" alt="" />
                 <span>Github</span>
             </Link>

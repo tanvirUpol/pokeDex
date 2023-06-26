@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import ProgressBar from '../components/ProgressBar';
 import Loading from '../components/Loading';
+import EvolutionChain from '../components/EvolutionChain';
 
 const PokemonDetails = () => {
   const [pokemonDetails, setPokemonDetails] = useState(null);
@@ -81,8 +82,8 @@ const PokemonDetails = () => {
     ));
   };
 
- 
   
+
 
   if(error){
     return <p>{error}</p>
@@ -91,8 +92,6 @@ const PokemonDetails = () => {
   if(isLoading){
     return <Loading />
   }
-
-
 
   return (
     <div>
@@ -121,12 +120,15 @@ const PokemonDetails = () => {
           <p className='text-lg text-center'>
             Height: {pokemonDetails.height / 10} m | Weight: {pokemonDetails.weight / 10} kg
           </p>
+          
           <h2 className="text-2xl font-medium mt-6 mb-2">Abilities:</h2>
           <div className='flex justify-start flex-wrap  items-center gap-1'>
             {renderAbilities()}
           </div>
           <h2 className="text-2xl font-medium mt-6 mb-2">Base Stats:</h2>
           {renderStats()}
+          <h2 className="text-2xl font-medium mt-6 mb-2">Evolution Chain:</h2>
+          <EvolutionChain pokemonName={pokemonDetails.name} />
         </div>
       )}
   </div>
