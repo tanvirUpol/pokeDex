@@ -1,7 +1,7 @@
-# React Project - PokeDex
+# React Project - PokeFind
 
 
-Welcome to PokeDex! This is a React project that leverages Vite, Tailwind CSS, PokeAPI, and Axios to create a comprehensive Pokemon encyclopedia. With this application, you can explore various Pokemon, their details, and even search for specific Pokemon based on their names.
+Welcome to PokeFind! This is a React project that leverages Vite, Tailwind CSS, PokeAPI, and Axios to create a comprehensive Pokemon encyclopedia. With this application, you can explore various Pokemon, their details, and even search for specific Pokemon based on their names.
 
 ## Build Status
 [![Netlify Status](https://api.netlify.com/api/v1/badges/f86d9af5-a43b-42f0-9d63-4f84b23c2100/deploy-status)](https://app.netlify.com/sites/pokefindapp/deploys)
