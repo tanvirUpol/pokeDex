@@ -1,50 +1,20 @@
 import { Link } from "react-router-dom";
 
-const typeColors = [
-    { type: 'normal', bgColor: '#A8A878' },
-    { type: 'fire', bgColor: '#F08030' },
-    { type: 'water', bgColor: '#6890F0' },
-    { type: 'grass', bgColor: '#78C850' },
-    { type: 'electric', bgColor: '#F8D030' },
-    { type: 'ice', bgColor: '#98D8D8' },
-    { type: 'fighting', bgColor: '#C03028' },
-    { type: 'poison', bgColor: '#A040A0' },
-    { type: 'ground', bgColor: '#E0C068' },
-    { type: 'flying', bgColor: '#A890F0' },
-    { type: 'psychic', bgColor: '#F85888' },
-    { type: 'bug', bgColor: '#A8B820' },
-    { type: 'rock', bgColor: '#B8A038' },
-    { type: 'ghost', bgColor: '#705898' },
-    { type: 'dragon', bgColor: '#7038F8' },
-    { type: 'dark', bgColor: '#705848' },
-    { type: 'steel', bgColor: '#B8B8D0' },
-    { type: 'fairy', bgColor: '#EE99AC' },
-    { type: 'unknown', bgColor: '#68A090' },
-    { type: 'shadow', bgColor: '#604E78' },
-  ];
-  
 
-  const PokeCard = ({pokemon,pokemonDetails,index}) => {
-    const types = pokemonDetails[index]?.types.map(
-        (type) => type.type.name
-      );
+  const PokeCard = ({pokemon,pokemonTypeColors}) => {
 
-
-    const pokemonTypeColors = types?.map((type) =>
-        typeColors.find((color) => color.type === type)
-    );
 
   return (
     
     <>
         
-        <Link to={`/pokeDetails/${pokemonDetails[index]?.name}`} className="bg-gray-100 shadow p-4 rounded hover:bg-gray-200">
+        <Link to={`/pokeDetails/${pokemon.name}`} className="bg-gray-100 shadow p-4 rounded hover:bg-gray-200">
                   {/* types */}
                   <div className="flex justify-end items-center gap-2 text-lg">
                     {pokemonTypeColors?.map((typeColor, index) => (
                       <p
                         key={index}
-                        className="py-1 px-3 capitalize rounded text-white"
+                        className="px-4 py-1 rounded-lg text-white text-sm uppercase"
                         style={{ backgroundColor: typeColor?.bgColor }}
                       >
                         {typeColor?.type}

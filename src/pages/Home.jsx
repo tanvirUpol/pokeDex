@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import PokeCard from '../components/PokeCard';
 import {matchSorter} from 'match-sorter'
+import Loading from '../components/Loading';
 
 
 const Home = () => {
@@ -63,16 +64,44 @@ const Home = () => {
         setVisiblePokemon((prevCount) => prevCount + 20);
     };
 
+    const typeColors = [
+        { type: 'normal', bgColor: '#A8A878' },
+        { type: 'fire', bgColor: '#F08030' },
+        { type: 'water', bgColor: '#6890F0' },
+        { type: 'grass', bgColor: '#78C850' },
+        { type: 'electric', bgColor: '#F8D030' },
+        { type: 'ice', bgColor: '#98D8D8' },
+        { type: 'fighting', bgColor: '#C03028' },
+        { type: 'poison', bgColor: '#A040A0' },
+        { type: 'ground', bgColor: '#E0C068' },
+        { type: 'flying', bgColor: '#A890F0' },
+        { type: 'psychic', bgColor: '#F85888' },
+        { type: 'bug', bgColor: '#A8B820' },
+        { type: 'rock', bgColor: '#B8A038' },
+        { type: 'ghost', bgColor: '#705898' },
+        { type: 'dragon', bgColor: '#7038F8' },
+        { type: 'dark', bgColor: '#705848' },
+        { type: 'steel', bgColor: '#B8B8D0' },
+        { type: 'fairy', bgColor: '#EE99AC' },
+        { type: 'unknown', bgColor: '#68A090' },
+        { type: 'shadow', bgColor: '#604E78' },
+      ];
+      
+
+      if(error){
+        return <p>{error}</p>
+      }
+ 
+      if(isLoading){
+        return <Loading />
+      }
+      
     
 
   return (
     <div className='flex flex-col' >
          <h1 className="text-2xl font-medium my-4 text-center">Pokémon List</h1>
-        {isLoading ? (
-          <p>Loading...</p>
-        ) : error ? (
-          <p>{error}</p>
-        ) : (
+    
             <>
             <form className="flex items-center">   
                 <label htmlFor="simple-search" className="sr-only">Search</label>
@@ -88,18 +117,27 @@ const Home = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
                     
                     {filterData.slice(0, visiblePokemon).map((pokemon, index) => {
+
+                        const types = pokemonDetails[index]?.types.map(
+                            (type) => type.type.name
+                        );
+
+
+                        const pokemonTypeColors = types?.map((type) =>
+                            typeColors.find((color) => color.type === type)
+                        );
                     
                     return (
-                        <PokeCard key={pokemon.name} pokemon={pokemon} pokemonDetails={pokemonDetails} index={index} />
+                        <PokeCard key={pokemon.name} pokemon={pokemon} pokemonTypeColors={pokemonTypeColors} index={index} />
                     );
                     })}
                 </div>
             </>
-        )}
+      
         {visiblePokemon < filterData.length && (
           <button
             className="bg-blue-500 mx-auto text-white text-2xl px-4 py-2 mt-4 rounded"
-            onClick={loadMorePokemon}
+            onClick={loadMorePokemon} disabled={isLoading}
           >
             Load More
           </button>
