@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 const EvolutionChain = ({ pokemonName }) => {
   const [evolutionTree, setEvolutionTree] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchEvolutionTree = async () => {
@@ -14,6 +15,7 @@ const EvolutionChain = ({ pokemonName }) => {
         console.log(evolutionChain);
         const evolutionTreeData = getEvolutionTreeData(evolutionChain);
         setEvolutionTree(evolutionTreeData);
+        setIsLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -43,6 +45,10 @@ const EvolutionChain = ({ pokemonName }) => {
     traverseEvolutionChain(evolutionChain);
     return evolutionTreeData;
   };
+
+  if(isLoading) {
+    return <img className='p-4 mx-auto animate-spin' src="/assets/pokemonLogo.svg" alt="" />
+  }
 
   return (
     <div className='flex flex-col sm:flex-row gap-5'>
