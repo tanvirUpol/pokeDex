@@ -76,7 +76,7 @@ const PokemonDetails = () => {
 
     return pokemonDetails.abilities.map((ability) => (
       <div key={ability.ability.name} className="flex items-center mb-2">
-        <p className='px-4 py-1 rounded-lg text-white text-lg uppercase bg-teal-600' >{ability.ability.name}</p>
+        <p className='px-4 py-1 rounded-lg text-white sm:text-lg uppercase bg-teal-600' >{ability.ability.name}</p>
       </div>
     ));
   };
@@ -122,7 +122,7 @@ const PokemonDetails = () => {
             Height: {pokemonDetails.height / 10} m | Weight: {pokemonDetails.weight / 10} kg
           </p>
           <h2 className="text-2xl font-medium mt-6 mb-2">Abilities:</h2>
-          <div className='flex justify-start items-center gap-1'>
+          <div className='flex justify-start flex-wrap  items-center gap-1'>
             {renderAbilities()}
           </div>
           <h2 className="text-2xl font-medium mt-6 mb-2">Base Stats:</h2>
